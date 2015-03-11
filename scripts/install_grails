@@ -1,0 +1,6 @@
+curl -s get.gvmtool.net | bash
+
+source "$HOME/.gvm/bin/gvm-init.sh"
+
+gvm install grails 2.2.5
+

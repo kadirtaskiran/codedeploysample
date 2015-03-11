@@ -1,8 +1,6 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
   - source: puppet
     destination: /etc/puppet
 hooks:
@@ -10,14 +8,14 @@ hooks:
     - location: scripts/install_puppet
       timeout: 300
       runas: root
-    - location: scripts/install_dependencies
+    -location: scripts/install_grails
       timeout: 300
       runas: root
-    - location: scripts/start_server
-      timeout: 300
+    -location: scripts/create_war
+      timeout: 500
       runas: root
+  ApplicationStart:
+    - location: scripts/puppet-apply.sh
   ApplicationStop:
-    - location: scripts/stop_server
-      timeout: 300
-      runas: root
+
 

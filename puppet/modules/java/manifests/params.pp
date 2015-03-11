@@ -45,6 +45,37 @@ class java::params {
         'jre' => { 'package' => $jre_package, },
       }
     }
+        'Linux': {
+      case $::operatingsystem {
+        default: { fail("unsupported os ${::operatingsystem}") }
+        'RedHat', 'CentOS', 'OracleLinux', 'Scientific': {
+          if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
+            $jdk_package = 'java-1.6.0-sun-devel'
+            $jre_package = 'java-1.6.0-sun'
+          }
+          elsif (versioncmp($::operatingsystemrelease, '6.3') < 0) {
+            $jdk_package = 'java-1.6.0-openjdk-devel'
+            $jre_package = 'java-1.6.0-openjdk'
+          }
+          else {
+            $jdk_package = 'java-1.7.0-openjdk-devel'
+            $jre_package = 'java-1.7.0-openjdk'
+          }
+        }
+        'Fedora': {
+          $jdk_package = 'java-1.7.0-openjdk-devel'
+          $jre_package = 'java-1.7.0-openjdk'
+        }
+        'Amazon': {
+          $jdk_package = 'java-1.7.0-openjdk-devel'
+          $jre_package = 'java-1.7.0-openjdk'
+        }
+      }
+      $java = {
+        'jdk' => { 'package' => $jdk_package, },
+        'jre' => { 'package' => $jre_package, },
+      }
+    }
     'Debian': {
       case $::lsbdistcodename {
         default: { fail("unsupported release ${::lsbdistcodename}") }
