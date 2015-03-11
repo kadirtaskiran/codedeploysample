@@ -1,3 +1,4 @@
+#!/bin/bash
 curl -s get.gvmtool.net | bash
 
 source "$HOME/.gvm/bin/gvm-init.sh"
