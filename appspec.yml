@@ -5,9 +5,6 @@ files:
     destination: /etc/puppet
 hooks:
   BeforeInstall:
-    - location: scripts/delete_old
-      timeout: 300
-      runas: root    
     - location: scripts/install_puppet
       timeout: 300
       runas: root
@@ -16,8 +13,12 @@ hooks:
       runas: root
     - location: scripts/create_war
       timeout: 500
-      runas:root
+      runas: root
   ApplicationStart:
     - location: scripts/puppet-apply.sh
+  ApplicationStop:
+    - location: scripts/delete_old
+      timeout: 300
+      runas: root
 
 
