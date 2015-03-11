@@ -15,7 +15,7 @@ hooks:
       timeout: 500
       runas: root
   ApplicationStart:
-    - location: scripts/puppet-apply
+    - location: scripts/puppet_apply
   ApplicationStop:
     - location: scripts/delete_old
       timeout: 300
