@@ -8,14 +8,13 @@ hooks:
     - location: scripts/install_puppet
       timeout: 300
       runas: root
-    -location: scripts/install_grails
+    - location: scripts/install_grails
       timeout: 300
       runas: root
-    -location: scripts/create_war
+    - location: scripts/create_war
       timeout: 500
-      runas: root
+      runas:root
   ApplicationStart:
     - location: scripts/puppet-apply.sh
-  ApplicationStop:
 
 
